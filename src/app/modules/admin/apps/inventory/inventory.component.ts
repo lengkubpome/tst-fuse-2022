@@ -1,17 +1,17 @@
 import {
-    ChangeDetectionStrategy,
     Component,
     OnInit,
     ViewEncapsulation,
+    ChangeDetectionStrategy,
 } from '@angular/core';
 
 @Component({
-    selector: 'product',
+    selector: 'inventory',
     template: '<router-outlet></router-outlet>',
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProductComponent implements OnInit {
+export class InventoryComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {}

@@ -10,11 +10,11 @@ export const defaultNavigation: FuseNavigationItem[] = [
         icon: 'heroicons_outline:home',
         children: [
             {
-                id: 'apps.product',
-                title: 'Product',
+                id: 'apps.inventory',
+                title: 'Inventory',
                 type: 'basic',
                 icon: 'heroicons_outline:clipboard-list',
-                link: '/apps/product',
+                link: '/apps/inventory',
             },
             {
                 id: 'apps.notify',

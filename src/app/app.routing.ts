@@ -126,11 +126,11 @@ export const appRoutes: Route[] = [
                 path: 'apps',
                 children: [
                     {
-                        path: 'product',
+                        path: 'inventory',
                         loadChildren: () =>
                             import(
-                                'app/modules/admin/apps/product/product.module'
-                            ).then((m) => m.ProductModule),
+                                'app/modules/admin/apps/inventory/inventory.module'
+                            ).then((m) => m.InventoryModule),
                     },
                 ],
             },

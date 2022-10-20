@@ -1,7 +1,8 @@
+import { InventoryListComponent } from './list/inventory-list.component';
 import { NgModule } from '@angular/core';
-import { ProductComponent } from './product.component';
+import { inventoryRoutes } from './inventory.routing';
+import { InventoryComponent } from './inventory.component';
 import { SharedModule } from 'app/shared/shared.module';
-import { productRoutes } from './product.routing';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -18,9 +19,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 @NgModule({
-    declarations: [ProductComponent],
+    declarations: [InventoryComponent, InventoryListComponent],
     imports: [
-        RouterModule.forChild(productRoutes),
+        RouterModule.forChild(inventoryRoutes),
         MatButtonModule,
         MatCheckboxModule,
         MatFormFieldModule,
@@ -37,4 +38,4 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         SharedModule,
     ],
 })
-export class ProductModule {}
+export class InventoryModule {}
