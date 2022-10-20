@@ -1,4 +1,4 @@
-import { InventoryListComponent } from './list/inventory-list.component';
+import { InventoryListComponent } from './components/list/inventory-list.component';
 import { NgModule } from '@angular/core';
 import { inventoryRoutes } from './inventory.routing';
 import { InventoryComponent } from './inventory.component';
