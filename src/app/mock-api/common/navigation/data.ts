@@ -4,7 +4,7 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 export const defaultNavigation: FuseNavigationItem[] = [
     {
         id: 'apps',
-        title: 'Applications',
+        title: 'Inventory',
         subtitle: 'Custom made application designs',
         type: 'group',
         icon: 'heroicons_outline:home',

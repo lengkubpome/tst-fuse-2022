@@ -17,6 +17,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
+import { ROOT_REDUCERS, metaReducers } from './app.reducer';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 
 const routerConfig: ExtraOptions = {
     preloadingStrategy: PreloadAllModules,
@@ -44,13 +48,17 @@ const routerConfig: ExtraOptions = {
         // 3rd party modules that require global configuration via forRoot
         MarkdownModule.forRoot({}),
 
-        StoreModule.forRoot({}, {}),
-
+        StoreModule.forRoot(ROOT_REDUCERS, { metaReducers }),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
         EffectsModule.forRoot([]),
-
         StoreRouterConnectingModule.forRoot(),
-
-        StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+        StoreDevtoolsModule.instrument({
+            maxAge: 25,
+            logOnly: environment.production,
+        }),
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
     ],
     bootstrap: [AppComponent],
 })

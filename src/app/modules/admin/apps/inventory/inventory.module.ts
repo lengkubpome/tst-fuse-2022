@@ -17,6 +17,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { StoreModule } from '@ngrx/store';
+// import * as fromInventory from './reducers';
 
 @NgModule({
     declarations: [InventoryComponent, InventoryListComponent],
@@ -36,6 +38,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
         MatSlideToggleModule,
         MatTooltipModule,
         SharedModule,
+        // StoreModule.forFeature(
+        //     fromInventory.inventoryFeatureKey,
+        //     fromInventory.reducers,
+        //     { metaReducers: fromInventory.metaReducers }
+        // ),
     ],
 })
 export class InventoryModule {}
