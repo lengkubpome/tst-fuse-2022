@@ -3,25 +3,25 @@ import { FuseNavigationItem } from '@fuse/components/navigation';
 
 export const defaultNavigation: FuseNavigationItem[] = [
     {
-        id: 'apps',
+        id: 'inventory',
         title: 'Inventory',
         subtitle: 'Custom made application designs',
         type: 'group',
         icon: 'heroicons_outline:home',
         children: [
             {
-                id: 'apps.inventory',
-                title: 'Inventory',
+                id: 'inventory.product',
+                title: 'Product / Service',
                 type: 'basic',
                 icon: 'heroicons_outline:clipboard-list',
-                link: '/apps/inventory',
+                link: '/inventory/product',
             },
             {
-                id: 'apps.notify',
+                id: 'inventory.notify',
                 title: 'Notify',
                 type: 'basic',
                 icon: 'heroicons_outline:speakerphone',
-                link: '/apps/notify',
+                link: '/inventory/notify',
             },
         ],
     },

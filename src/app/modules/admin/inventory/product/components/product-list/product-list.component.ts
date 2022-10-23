@@ -1,20 +1,20 @@
 import {
+    ChangeDetectionStrategy,
     Component,
     OnInit,
-    ChangeDetectionStrategy,
     ViewEncapsulation,
 } from '@angular/core';
 import { fuseAnimations } from '@fuse/animations';
 
 @Component({
-    selector: 'inventory-list',
-    templateUrl: './inventory-list.component.html',
-    styleUrls: ['./inventory-list.component.less'],
+    selector: 'product-list',
+    templateUrl: './product-list.component.html',
+    styleUrls: ['./product-list.component.less'],
     encapsulation: ViewEncapsulation.None,
     changeDetection: ChangeDetectionStrategy.OnPush,
     animations: fuseAnimations,
 })
-export class InventoryListComponent implements OnInit {
+export class ProductListComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {}

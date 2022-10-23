@@ -123,14 +123,14 @@ export const appRoutes: Route[] = [
         children: [
             // Apps
             {
-                path: 'apps',
+                path: 'inventory',
                 children: [
                     {
-                        path: 'inventory',
+                        path: 'product',
                         loadChildren: () =>
                             import(
-                                'app/modules/admin/apps/inventory/inventory.module'
-                            ).then((m) => m.InventoryModule),
+                                'app/modules/admin/inventory/product/product.module'
+                            ).then((m) => m.ProductModule),
                     },
                 ],
             },

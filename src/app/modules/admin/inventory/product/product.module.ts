@@ -1,7 +1,5 @@
-import { InventoryListComponent } from './components/list/inventory-list.component';
 import { NgModule } from '@angular/core';
-import { inventoryRoutes } from './inventory.routing';
-import { InventoryComponent } from './inventory.component';
+import { productRoutes } from './product.routing';
 import { SharedModule } from 'app/shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,12 +16,17 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { StoreModule } from '@ngrx/store';
-// import * as fromInventory from './reducers';
+import { ProductComponent } from './product.component';
+import { ProductListComponent } from './components/product-list/product-list.component';
+import * as fromProduct from './state';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './state/product.effects';
+import { ProductService } from './services/product.service';
 
 @NgModule({
-    declarations: [InventoryComponent, InventoryListComponent],
+    declarations: [ProductComponent, ProductListComponent],
     imports: [
-        RouterModule.forChild(inventoryRoutes),
+        RouterModule.forChild(productRoutes),
         MatButtonModule,
         MatCheckboxModule,
         MatFormFieldModule,
@@ -38,11 +41,12 @@ import { StoreModule } from '@ngrx/store';
         MatSlideToggleModule,
         MatTooltipModule,
         SharedModule,
-        // StoreModule.forFeature(
-        //     fromInventory.inventoryFeatureKey,
-        //     fromInventory.reducers,
-        //     { metaReducers: fromInventory.metaReducers }
-        // ),
+        StoreModule.forFeature(
+            fromProduct.productFeatureKey,
+            fromProduct.productReducer
+        ),
+        EffectsModule.forFeature([ProductEffects]),
     ],
+    providers: [ProductService],
 })
-export class InventoryModule {}
+export class ProductModule {}
