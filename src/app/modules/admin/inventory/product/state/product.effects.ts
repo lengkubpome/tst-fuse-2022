@@ -41,27 +41,31 @@ export class ProductEffects {
         )
     );
 
-    //   loadProductsSuccess$ = createEffect(() =>
-    //     this.actions$.pipe(
-    //       ofType(ProductActions.loadProductsSuccess),
-    //       switchMap(() =>
-    //         this.productService.getProductOptions().pipe(
-    //           map((options) => {
-    //             return ProductActions.loadProductOptionsSuccess({
-    //               productOptions: options,
-    //             });
-    //           }),
-    //         //   tap(() => this.store.dispatch(setLoaded())),
-    //           catchError((errorMessage) => {
-    //             this.snackBar.open(errorMessage.errorMessage, 'ปิด', {
-    //               panelClass: ['snackbar-error'],
-    //             });
-    //             return of(ProductActions.productActionFailure({ errorMessage }));
-    //           })
-    //         )
-    //       )
-    //     )
-    //   );
+    loadProductsSuccess$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(ProductActions.loadProductsSuccess),
+            switchMap(() =>
+                this.productService.getProductOptions().pipe(
+                    map((options) => {
+                        return ProductActions.loadProductOptionsSuccess({
+                            productOptions: options,
+                        });
+                    }),
+                    //   tap(() => this.store.dispatch(setLoaded())),
+                    catchError((errorMessage) => {
+                        this.snackBar.open(errorMessage.errorMessage, 'ปิด', {
+                            panelClass: ['snackbar-error'],
+                        });
+                        return of(
+                            ProductActions.productActionFailure({
+                                errorMessage,
+                            })
+                        );
+                    })
+                )
+            )
+        )
+    );
 
     //   addProduct$ = createEffect(() =>
     //     this.actions$.pipe(
@@ -222,7 +226,6 @@ export class ProductEffects {
     constructor(
         private actions$: Actions,
         private productService: ProductService,
-        private snackBar: MatSnackBar
-    ) // private store: Store<SharedState>
-    {}
+        private snackBar: MatSnackBar // private store: Store<SharedState>
+    ) {}
 }
