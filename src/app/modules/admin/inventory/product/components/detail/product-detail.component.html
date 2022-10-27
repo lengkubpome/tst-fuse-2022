@@ -1,0 +1,76 @@
+<div class="flex flex-auto">
+
+    <form class="flex flex-col flex-auto p-6 pt-10 sm:p-8 sm:pt-10 overflow-y-auto"
+        [formGroup]="productForm">
+
+        <!-- Header -->
+        <div class="flex items-center justify-between -mt-3 -ml-4">
+
+            <!-- Mark as ... button -->
+            <button class="pr-4 pl-3.5" mat-button>
+
+                <!-- Mark as complete -->
+                <!-- <ng-container *ngIf="!taskForm.get('completed').value">
+                    <div class="flex items-center justify-center">
+                        <mat-icon [svgIcon]="'heroicons_outline:check-circle'"></mat-icon>
+                        <span class="ml-2 font-semibold">MARK AS COMPLETE</span>
+                    </div>
+                </ng-container> -->
+
+                <!-- Mark as incomplete -->
+                <!-- <ng-container *ngIf="taskForm.get('completed').value"> -->
+                <ng-container>
+                    <div class="flex items-center justify-center">
+                        <mat-icon class="text-primary" [svgIcon]="'heroicons_outline:check-circle'">
+                        </mat-icon>
+                        <span class="ml-2 font-semibold">MARK AS INCOMPLETE</span>
+                    </div>
+                </ng-container>
+            </button>
+
+            <div class="flex items-center">
+                <!-- More menu -->
+                <button mat-icon-button [matMenuTriggerFor]="moreMenu">
+                    <mat-icon [svgIcon]="'heroicons_outline:dots-vertical'"></mat-icon>
+                </button>
+                <mat-menu #moreMenu="matMenu">
+                    <button mat-menu-item (click)="deleteTask()">
+                        <mat-icon [svgIcon]="'heroicons_outline:trash'"></mat-icon>
+                        <span>Delete }}</span>
+                    </button>
+                </mat-menu>
+
+                <!-- Close button -->
+                <a mat-icon-button [routerLink]="['../']">
+                    <mat-icon [svgIcon]="'heroicons_outline:x'"></mat-icon>
+                </a>
+            </div>
+
+        </div>
+
+        <mat-divider class="mt-6 mb-8"></mat-divider>
+
+        <!-- Title -->
+        <div>
+            <mat-form-field class="fuse-mat-textarea fuse-mat-no-subscript w-full">
+                <mat-label>title</mat-label>
+                <textarea matInput [formControlName]="'title'" [spellcheck]="false"
+                    matTextareaAutosize #titleField></textarea>
+            </mat-form-field>
+        </div>
+
+
+
+
+        <!-- Notes -->
+        <div class="mt-8">
+            <mat-form-field class="fuse-mat-textarea fuse-mat-no-subscript w-full">
+                <mat-label>Notes</mat-label>
+                <textarea matInput [formControlName]="'notes'" [spellcheck]="false"
+                    matTextareaAutosize></textarea>
+            </mat-form-field>
+        </div>
+
+    </form>
+
+</div>

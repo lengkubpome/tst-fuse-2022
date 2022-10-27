@@ -17,14 +17,19 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { StoreModule } from '@ngrx/store';
 import { ProductComponent } from './product.component';
-import { ProductListComponent } from './components/product-list/product-list.component';
+import { ProductListComponent } from './components/list/product-list.component';
 import * as fromProduct from './state';
 import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './state/product.effects';
 import { ProductService } from './services/product.service';
+import { ProductDetailComponent } from './components/detail/product-detail.component';
 
 @NgModule({
-    declarations: [ProductComponent, ProductListComponent],
+    declarations: [
+        ProductComponent,
+        ProductListComponent,
+        ProductDetailComponent,
+    ],
     imports: [
         RouterModule.forChild(productRoutes),
         MatButtonModule,

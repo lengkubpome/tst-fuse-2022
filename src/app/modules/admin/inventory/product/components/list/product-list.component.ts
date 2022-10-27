@@ -28,6 +28,7 @@ import {
 } from '../../state';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { MatDrawer } from '@angular/material/sidenav';
 import { FuseConfirmationService } from '@fuse/services/confirmation';
 import {
     UntypedFormBuilder,
@@ -35,6 +36,8 @@ import {
     UntypedFormGroup,
     Validators,
 } from '@angular/forms';
+import { FuseMediaWatcherService } from '@fuse/services/media-watcher';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'product-list',
@@ -47,9 +50,12 @@ import {
 export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
     @ViewChild(MatPaginator) private _paginator: MatPaginator;
     @ViewChild(MatSort) private _sort: MatSort;
+    @ViewChild('matDrawer', { static: true }) matDrawer: MatDrawer;
 
     products$: Observable<IProduct[]> = of([]);
     productOptions$: Observable<IProductOption[]> = of([]);
+
+    drawerMode: 'side' | 'over';
 
     searchInputControl: UntypedFormControl = new UntypedFormControl();
     selectedProduct: IProduct | null = null;
@@ -62,7 +68,10 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
         private store: Store<ProductState>,
         private _changeDetectorRef: ChangeDetectorRef,
         private _fuseConfirmationService: FuseConfirmationService,
-        private _formBuilder: UntypedFormBuilder
+        private _fuseMediaWatcherService: FuseMediaWatcherService,
+        private _formBuilder: UntypedFormBuilder,
+        private _activatedRoute: ActivatedRoute,
+        private _router: Router
     ) {}
 
     // -----------------------------------------------------------------------------------------------------
@@ -113,6 +122,18 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
                 })
             )
             .subscribe();
+
+        // Subscribe to media query change
+        this._fuseMediaWatcherService
+            .onMediaQueryChange$('(min-width: 1440px)')
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((state) => {
+                // Calculate the drawer mode
+                this.drawerMode = state.matches ? 'side' : 'over';
+
+                // Mark for check
+                this._changeDetectorRef.markForCheck();
+            });
     }
 
     /**
@@ -261,6 +282,27 @@ export class ProductListComponent implements OnInit, AfterViewInit, OnDestroy {
         //     // Mark for check
         //     this._changeDetectorRef.markForCheck();
         // });
+
+        // Go to the new task
+        this._router.navigate(['new'], {
+            relativeTo: this._activatedRoute,
+        });
+
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
+    }
+
+    /**
+     * On backdrop clicked
+     */
+    onBackdropClicked(): void {
+        // Go back to the list
+        this._router.navigate(['./'], { relativeTo: this._activatedRoute });
+
+        // this.matDrawer.close();
+
+        // Mark for check
+        this._changeDetectorRef.markForCheck();
     }
 
     /**
