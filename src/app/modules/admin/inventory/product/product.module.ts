@@ -23,6 +23,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { ProductEffects } from './state/product.effects';
 import { ProductService } from './services/product.service';
 import { ProductDetailComponent } from './components/detail/product-detail.component';
+import { FuseDrawerModule } from '@fuse/components/drawer';
 
 @NgModule({
     declarations: [
@@ -45,6 +46,7 @@ import { ProductDetailComponent } from './components/detail/product-detail.compo
         MatSelectModule,
         MatSlideToggleModule,
         MatTooltipModule,
+        FuseDrawerModule,
         SharedModule,
         StoreModule.forFeature(
             fromProduct.productFeatureKey,

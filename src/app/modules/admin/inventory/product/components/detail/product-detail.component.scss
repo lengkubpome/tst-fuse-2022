@@ -1,0 +1,14 @@
+::ng-deep {
+    display: flex;
+    flex-direction: column;
+}
+.sticky{
+
+    // position: sticky;
+    display: revert;
+    bottom: 0;
+    margin-bottom: 1rem;
+    z-index: 99;
+    background: white;
+
+}

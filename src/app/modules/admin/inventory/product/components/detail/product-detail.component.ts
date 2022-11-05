@@ -124,4 +124,14 @@ export class ProductDetailComponent
             },
         });
     }
+
+    /**
+     * Set the task priority
+     *
+     * @param priority
+     */
+    setTaskPriority(priority): void {
+        // Set the value
+        this.productForm.get('priority').setValue(priority);
+    }
 }
